@@ -160,9 +160,9 @@ BLD_TYPE_DIR = macs
 #AUDIO LIB
 !IF "$(ARCH)" == "WIN"
 !IF "$(TYPE)" == "DEBUG"
-AUDIO_LIB = $(KAUAI_ROOT)\elib\$(BLD_TYPE_DIR)\audiod.lib
+#AUDIO_LIB = $(KAUAI_ROOT)\elib\$(BLD_TYPE_DIR)\audiod.lib
 !ELSE IF "$(TYPE)" == "SHIP"
-AUDIO_LIB = $(KAUAI_ROOT)\elib\$(BLD_TYPE_DIR)\audios.lib
+#AUDIO_LIB = $(KAUAI_ROOT)\elib\$(BLD_TYPE_DIR)\audios.lib
 !ENDIF
 !ENDIF
 

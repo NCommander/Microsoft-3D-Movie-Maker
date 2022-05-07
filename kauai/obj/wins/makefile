@@ -7,7 +7,7 @@
 ALL: SETBLD KAUAI_SRC KAUAI_TOOLS
 
 SETBLD:
-    Setbld s w n
+#    Setbld s w n
 
 KAUAI_SRC:
     cd $(KAUAI_ROOT)\src

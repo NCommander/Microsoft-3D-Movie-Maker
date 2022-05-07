@@ -287,6 +287,8 @@ bool CAMS::FReadCams(PCRF pcrf, CTG ctg, CNO cno, PBLCK pblck,
 	AssertPo(pblck, 0);
 	AssertNilOrVarMem(ppbaco);
 	AssertVarMem(pcb);
+
+#ifdef MISSING_AUDIOMAN_SYMBOL
 	FLO flo;
 	bool fPacked;
 	PCAMS pcams = pvNil;
@@ -318,6 +320,7 @@ bool CAMS::FReadCams(PCRF pcrf, CTG ctg, CNO cno, PBLCK pblck,
 
 	AssertNilOrPo(pcams, 0);
 	*ppbaco = pcams;
+#endif
 
 	return pvNil != *ppbaco;
 }
@@ -332,6 +335,7 @@ PCAMS CAMS::PcamsNewLoop(PCAMS pcamsSrc, long cactPlay)
 	Assert(cactPlay != 1, "bad loop count");
 	PCAMS pcams = pvNil;
 
+#ifdef MISSING_AUDIOMAN_SYMBOL
 	if (pvNil == (pcams = NewObj CAMS) ||
 		FAILED(AllocLoopFilter(&pcams->psnd, pcamsSrc->psnd,
 			cactPlay - 1)))
@@ -344,6 +348,7 @@ PCAMS CAMS::PcamsNewLoop(PCAMS pcamsSrc, long cactPlay)
 		pcams->_pstbl = pcamsSrc->_pstbl;
 		pcams->_pstbl->AddRef();
 		}
+#endif
 
 	AssertNilOrPo(pcams, 0);
 	return pcams;
@@ -414,12 +419,14 @@ STDMETHODIMP AMNOT::QueryInterface(REFIID riid, void ** ppv)
 {
 	AssertThis(0);
 
+#ifdef MISSING_AUDIOMAN_SYMBOL
 	if (IsEqualIID(riid, IID_IUnknown) || IsEqualIID(riid, IID_IAMNotifySink))
 		{
 		*ppv = (void *)this;
 		AddRef();
 		return S_OK;
 		}
+#endif
 
 	*ppv = pvNil;
 	return E_NOINTERFACE;
@@ -857,6 +864,8 @@ bool FHaveWaveDevice(DWORD dwReqFormats)
 bool SDAM::_FInit(long wav)
 {
 	AssertBaseThis(0);
+
+#ifdef MISSING_AUDIOMAN_SYMBOL
 	MIXERCONFIG mixc;
 	ADVMIXCONFIG amxc;
 
@@ -929,6 +938,10 @@ bool SDAM::_FInit(long wav)
 
 	AssertThis(0);
 	return fTrue;
+#else // Audioman present
+	return fFalse;
+#endif
+
 }
 
 

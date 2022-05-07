@@ -728,8 +728,11 @@ void APPB::_CleanUp(void)
 
 #ifdef WIN
 #ifdef DEBUG
+#ifdef MISSING_AUDIOMAN_SYMBOL
+
 	// check for Audioman memory leaks
 	DetectLeaks(fTrue, fFalse);
+#endif //MISSING_AUDIOMAN_SYMBOL
 #endif //DEBUG
 #endif //WIN
 
